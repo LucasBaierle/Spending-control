@@ -173,4 +173,8 @@ input[type=number] {
 .transactions li:hover .delete-btn {
   opacity: 1;
 }
+
+.hidden {
+  display: none !important;
+}
 /*# sourceMappingURL=style.css.map */
