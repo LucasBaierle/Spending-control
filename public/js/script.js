@@ -5,6 +5,7 @@ const balanceDisplay = document.querySelector("#balance")
 const form = document.querySelector("#form")
 const inputTransactionName = document.querySelector("#text")
 const inputTransactionAmount = document.querySelector("#amount")
+const inputSearchTransaction = document.querySelector("#form-search input")
 
 const localStorageTransactions = JSON.parse(localStorage
   .getItem("transactions"));
@@ -107,7 +108,34 @@ const handleEventForm = event => {
   init();
   updateLocalStorage(transactions);
   clearInputs();
-
 }
 
-form.addEventListener("submit", handleEventForm)
+form.addEventListener("submit", handleEventForm);
+
+
+
+const filterTransactions = (transactions, value, returnMatchedTransactions) =>
+  transactions.filter(transaction => {
+    const matchedTransactions = transaction.textContent.toLowerCase().includes(value);
+    return returnMatchedTransactions ? matchedTransactions : !matchedTransactions
+  })
+
+const hideTransactions = (transactions, value) => {
+  filterTransactions(transactions, value, false)
+    .forEach(transaction => transaction.classList.add("hidden"))
+}
+const showTransactions = (transactions, value) => {
+  filterTransactions(transactions, value, true)
+    .forEach(transaction => transaction.classList.remove("hidden"));
+}
+
+
+inputSearchTransaction.addEventListener("input", event => {
+
+  const value = event.target.value.trim();
+  const transactions = Array.from(transactionUl.children);
+
+  hideTransactions(transactions, value);
+  showTransactions(transactions, value);
+
+})
