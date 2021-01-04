@@ -177,4 +177,73 @@ input[type=number] {
 .hidden {
   display: none !important;
 }
+
+#darkmode {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.toggle {
+  isolation: isolate;
+  position: relative;
+  height: 24px;
+  width: 48px;
+  border-radius: 15px;
+  background: rgba(128, 128, 128, 0.555);
+  overflow: hidden;
+}
+
+.toggle-inner {
+  z-index: 2;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  height: 22px;
+  width: 46px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.active-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200%;
+  background: #333;
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+  -webkit-transition: -webkit-transform 0.05s linear 0.17s;
+  transition: -webkit-transform 0.05s linear 0.17s;
+  transition: transform 0.05s linear 0.17s;
+  transition: transform 0.05s linear 0.17s, -webkit-transform 0.05s linear 0.17s;
+}
+
+.toggle-state {
+  display: none;
+}
+
+.indicator {
+  height: 100%;
+  width: 200%;
+  background: #fff;
+  border-radius: 13px;
+  -webkit-transform: translate3d(-75%, 0, 0);
+          transform: translate3d(-75%, 0, 0);
+  -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+  transition: -webkit-transform 0.35s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+  transition: transform 0.35s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+  transition: transform 0.35s cubic-bezier(0.85, 0.05, 0.18, 1.35), -webkit-transform 0.35s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+}
+
+.toggle-state:checked ~ .active-bg {
+  -webkit-transform: translate3d(-50%, 0, 0);
+          transform: translate3d(-50%, 0, 0);
+}
+
+.toggle-state:checked ~ .toggle-inner .indicator {
+  -webkit-transform: translate3d(25%, 0, 0);
+          transform: translate3d(25%, 0, 0);
+}
 /*# sourceMappingURL=style.css.map */
